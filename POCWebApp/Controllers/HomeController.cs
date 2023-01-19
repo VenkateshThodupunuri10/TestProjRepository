@@ -19,64 +19,29 @@ namespace POCWebApp.Controllers
 
         public IActionResult Index()
         {
-            var sessionUserName = HttpContext.Session.GetString("UserName");
             List<FBResult> fbResult = new List<FBResult>();
-
-            if (!string.IsNullOrEmpty(sessionUserName))
+            try
             {
-                fbResult = _db.FBResults.ToList();
-                if (fbResult == null || fbResult.Count == 0)
+                var sessionUserName = HttpContext.Session.GetString("UserName");
+                
+
+                if (!string.IsNullOrEmpty(sessionUserName))
                 {
-                    TempData["ErrorMessage"] = "No Records to show";
+                    fbResult = _db.FBResults.ToList();
+                    if (fbResult == null || fbResult.Count == 0)
+                    {
+                        TempData["ErrorMessage"] = "No Records to show";
+                    }
                 }
-                return View(fbResult);
-            }
-            else {
-                TempData["ErrorMessage"] = "Please Login";
-                return RedirectToAction("LoginTest", "Login");
-            }
-            
+                else
+                {
+                    TempData["ErrorMessage"] = "Please Login";
+                    return RedirectToAction("LoginTest", "Login");
+                }
+            }catch(Exception ex) { }
+            return View(fbResult);
+
         }
-
-        //public IActionResult Index()
-        //{
-        //    List<FBResult> fbResult = new List<FBResult>();
-
-        //    try
-        //    {
-        //        using (var client = new HttpClient())
-        //        {
-        //            client.BaseAddress = new Uri("http://localhost:81/");
-        //            //HTTP GET
-        //            var responseTask = client.GetAsync("testresult");
-        //            responseTask.Wait();
-
-        //            var result = responseTask.Result;
-        //            if (result.IsSuccessStatusCode)
-        //            {
-        //                var readTask = result.Content.ReadAsStringAsync();
-        //                readTask.Wait();
-        //                if (!string.IsNullOrEmpty(readTask.Result))
-        //                {
-        //                    fbResult = JsonConvert.DeserializeObject<List<FBResult>>(readTask.Result);
-        //                }
-        //                else //web api sent error response 
-        //                {
-        //                    TempData["ErrorMessage"] = "No Records to show";
-        //                }
-        //            }
-        //            else //web api sent error response 
-        //            {
-        //                TempData["ErrorMessage"] = "No Records to show";
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //    }
-        //    return View(fbResult);
-        //}
-
         public IActionResult Privacy()
         {
             List<FBResult> fbResult = new List<FBResult>();
@@ -125,8 +90,12 @@ namespace POCWebApp.Controllers
         }
 
         public IActionResult Logout() {
-            TempData["ErrorMessage"] = "Logged out Successfully";
-            HttpContext.Session.SetString("UserName", string.Empty);
+            try
+            {
+                TempData["ErrorMessage"] = "Logged out Successfully";
+                HttpContext.Session.SetString("UserName", string.Empty);
+            }
+            catch (Exception ex) { }
             return RedirectToAction("LoginTest", "Login");
         }
 

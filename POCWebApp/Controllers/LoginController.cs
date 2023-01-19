@@ -28,7 +28,29 @@ namespace POCWebApp.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateUser(Users obj)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _db.Users.Add(obj);
+                    _db.SaveChanges();
+                    TempData["ErrorMessage"] = "User Created Successfully, Please Login";
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            else
+            {
+                return View("UserSignUp", obj);
+            }
 
+            return RedirectToAction("LoginTest", "Login");
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
