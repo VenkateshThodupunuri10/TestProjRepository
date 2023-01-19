@@ -23,6 +23,13 @@ namespace POCWebApp.Controllers
             return View();
         }
 
+        public IActionResult UserSignUp()
+        {
+            return View();
+        }
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult UserLogin(Users obj) {
