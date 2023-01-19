@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<div class="text-center">
+    <div>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <h2 style="color:black">@TempData["ErrorMessage"]</h2>
+        }
+        else
+        {
+            <table width="100%">
+                <tr>
+                    <th>FormID</th>
+                    <th>Date</th>
+                    <th>IsFromSet</th>
+                    <th>IsUsedForSaveOnly</th>
+                    <th>IsStageSubmitted</th>
+                    <th>ResultSetID</th>
+                    <th>UserCreated</th>
+                    <th>Status</th>
+                    <th>FormWorkflowStageID</th>
+                    <th>ApplicationID</th>
+                    <th>UserName</th>
+                    <th>UserEmail</th>
+                    <th>IsCollaborationStage</th>
+                    <th>TokenGroupId</th>
+                    <th>Revision</th>
+                    <th>TimeSpentonStatus</th>
+                </tr>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td>@obj.FormID</td>
+                        <td>@obj.Date</td>
+                        <td>@obj.IsFromSet</td>
+                        <td>@obj.IsUsedForSaveOnly</td>
+                        <td>@obj.IsStageSubmitted</td>
+                        <td>@obj.ResultSetID</td>
+                        <td>@obj.UserCreated</td>
+                        <td>@obj.Status</td>
+                        <td>@obj.FormWorkflowStageID</td>
+                        <td>@obj.ApplicationID</td>
+                        <td>@obj.UserName</td>
+                        <td>@obj.UserEmail</td>
+                        <td>@obj.IsCollaborationStage</td>
+                        <td>@obj.TokenGroupId</td>
+                        <td>@obj.Revision</td>
+                        <td>@obj.TimeSpentonStatus</td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: lightgray;
+    }
+</style>

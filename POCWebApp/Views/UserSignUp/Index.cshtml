@@ -1,0 +1,40 @@
+﻿@model Users
+
+<form method="post">
+    <div>
+        <center>
+            <div>
+                <h1>User's SignUp</h1>
+            </div>
+            <div>
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger" ></span>
+            </div>
+            <div>
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" class="form-control" />
+            </div>
+            <div>
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger" ></span>
+            </div>
+            <div>
+                <label asp-for="Password"></label>
+                <input type="password" asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger" ></span>
+            </div>
+            <div>
+                <label asp-for="Password">Confirm Password</label>
+                <input type="password" asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger" ></span>
+            </div>
+            <div>
+                <button type="submit" asp-action="CreateUser" class="btn btn-primary" style="width:150px;">
+                    Submit
+                </button>
+            </div>
+        </center>
+    </div>
+</form>

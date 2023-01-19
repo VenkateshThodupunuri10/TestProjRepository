@@ -1,0 +1,66 @@
+﻿@model Users
+
+<form method="post">
+
+    <div>
+        @*<center>
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <h2 class="text-danger">@TempData["ErrorMessage"]</h2>
+            }
+            <div>
+                <h1>Login</h1>
+            </div>
+            <div>
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Password"></label>
+                <input type="password" asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div>
+                <button type="submit" asp-action="UserLogin" class="btn btn-primary" style="width:150px;">
+                    Submit
+                </button>
+            </div>
+        </center>*@
+        <div class="headingsContainer">
+            <h3>Sign in</h3>
+            <p>Sign in with your username and password</p>
+        </div>
+
+        <!-- Main container for all inputs -->
+        <div class="mainContainer">
+            <!-- Username -->
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+            <br><br>
+
+            <!-- Password -->
+            <label asp-for="Password"></label>
+            <input type="password" asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+
+            <!-- sub container for the checkbox and forgot password link -->
+            <div class="subcontainer">
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+                <p class="forgotpsd"> <a href="#">Forgot Password?</a></p>
+            </div>
+
+
+            <!-- Submit button -->
+            <button type="submit">Login</button>
+
+            <!-- Sign up link -->
+            <p class="register">Not a member?  <a href="#">Register here!</a></p>
+
+        </div>
+    </div>
+</form>
